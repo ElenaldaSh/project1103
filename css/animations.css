@@ -1,0 +1,71 @@
+﻿.catmenu:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	border-top: 2px solid #fff;
+	border-bottom: 2px solid #fff;
+	height: 9px;
+	width: 24px;
+	transform-origin: left top;
+	transition: border-bottom-color 1.5s step-end, transform 1.5s ease, width 1.5s ease;
+}
+.open.catmenu:before {
+	width: 31px;
+	border-bottom-color: transparent;
+	transform: rotate(45deg);
+	transition: border-bottom-color 1.5s step-start, transform 1.5s ease, width 1.5s ease;
+}
+.catmenu:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 16px;
+	left: 16px;
+	border-bottom: 2px solid #fff;
+	height: 0;
+	width: 24px;
+	transform-origin: left bottom;
+	transition: all 1.5s ease;
+}
+
+.open.catmenu:after {
+	width: 31px;
+	transform: rotate(-45deg);
+}
+
+
+
+/*
+label::before,
+label::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 14px;
+	left: 2px;
+	width: 30px;
+	height: 0px;
+	border-top: 1px solid #f00;
+	border-bottom: 1px solid #f00;
+	transform-origin: center;
+	transition: all 1.5s ease;
+}
+label::before {
+	transform: rotate(45deg);
+}
+label::after {
+	transform: rotate(-45deg);
+}
+#input:checked + label::before,
+#input:checked + label::after {
+	transform: rotate(0);
+	border-color: #070;
+}
+#input:checked + label::before {
+	height: 14px;
+	top: 6px;
+	border-width: 2px;
+}
+*/

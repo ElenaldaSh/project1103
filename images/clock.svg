@@ -1,0 +1,37 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+	<style>
+		#clock {
+			stroke: #ffffff;
+			stroke-width: 2;
+			stroke-linecap: round;
+		}
+		#animation {
+			animation: rotate 5s linear infinite;
+			transform-origin: center;
+		}
+		@keyframes rotate {
+			0% {
+				transform: rotateZ(0deg);
+			}
+			33% {
+				transform: rotateZ(360deg);
+			}
+			66% {
+				transform: rotateZ(360deg);
+			}
+			100% {
+				transform: rotateZ(360deg);
+			}
+		}
+	</style>
+
+	<g id="clock">
+		<g id="animation">
+			<circle id="dial" cx="12" cy="12" r="11" />
+			<path id="minute" d="M 12 5 V 12 12" />
+		</g>
+		<path id="second" d="M 13 13 L 18 15" />
+	</g>
+
+</svg>

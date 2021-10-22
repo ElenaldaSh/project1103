@@ -1,0 +1,10 @@
+﻿@media screen and (max-width: 1450px) {
+	.container {
+		width: 1200px;
+	}
+}
+@media screen and (max-width: 1250px) {
+	.container {
+		width: 1000px;
+	}
+}
