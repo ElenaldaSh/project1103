@@ -114,11 +114,13 @@ main {
 	padding: 24px 0 0 24px;
 	margin-left: 24px;
 	position: relative;
+	text-align: center;
 }
 .toptext {
 	position: absolute;
 	top: 0;
 	left: 24px;
+	right: 0;
 }
 .sept,
 .num {
@@ -137,4 +139,44 @@ main {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	right: 0;
 }
+/* slider */
+
+.slider .container,
+.slider_desk,
+.slider_block {
+	width: 417px;
+	height: 570px;
+}
+.slider .container {
+	padding: 16px;
+}
+.slider_desk {
+	overflow: hidden;
+	position: relative;
+}
+.slider_block {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	left: 200%;
+	transition: opacity 3s step-start, left 3s ease;
+}
+.slider_block.curr {
+	opacity: 1;
+	left: 0;
+}
+.slider_block.prev {
+	opacity: 1;
+	left: -100%;
+}
+.slider_block.next {
+	opacity: 1;
+	left: 100%;
+}
+
+
+
+
+
