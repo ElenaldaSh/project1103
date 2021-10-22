@@ -54,6 +54,22 @@ header .container {
 	flex: none;
 	width: 24px;
 	height: 31px;
+	background: url('../images/enter.svg') left top no-repeat;
+}
+.headerlink:nth-child(5) {
+	background-image: url('../images/heart.svg');
+}
+.headerlink:last-child {
+	background-image: url('../images/basket.svg');
+}
+.headerlink:hover {
+	background-image: url('../images/enter_hover.svg');
+}
+.headerlink:nth-child(5):hover {
+	background-image: url('../images/heart_hover.svg');
+}
+.headerlink:last-child:hover {
+	background-image: url('../images/basket_hover.svg');
 }
 .catmenu {
 	background: #ed7127;
