@@ -150,7 +150,8 @@ main {
 	height: 570px;
 }
 .slider .container {
-	padding: 16px;
+	padding: 16px 78px;
+	position: relative;
 }
 .slider_desk {
 	overflow: hidden;
@@ -175,8 +176,25 @@ main {
 	opacity: 1;
 	left: 100%;
 }
-
-
+.slider button {
+	position: absolute;
+	background: green;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 32px;
+	line-height: 46px;
+	height: 46px;
+	width: 46px;
+	top: calc(50% - 23px);
+	cursor: pointer;
+}
+.slider .to_left {
+	left: 16px;
+}
+.slider .to_right {
+	right: 16px;
+}
 
 
 

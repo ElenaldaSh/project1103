@@ -7,6 +7,9 @@
     setInterval(retimer, 500);
     
     setInterval(slideLeft, 5000);
+    $('.slider .to_left').click(slideRight);
+    $('.slider .to_right').click(slideLeft);
+    
 })
 
 
@@ -19,7 +22,12 @@ function slideLeft() {
     $('.slider_block').eq(hlp).addClass('next');
 }
 function slideRight() {
-    
+    let hlp = $('.slider_block').index($('.slider_block.prev')) - 1;
+    if (hlp < 0) hlp += $('.slider_block').length;
+    $('.slider_block.next').removeClass('next');
+    $('.slider_block.curr').removeClass('curr').addClass('next');
+    $('.slider_block.prev').removeClass('prev').addClass('curr');
+    $('.slider_block').eq(hlp).addClass('prev');
 }
 function retimer() {
     let limit = new Date($('.retaimer').data('fordate'));
