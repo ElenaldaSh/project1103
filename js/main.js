@@ -1,22 +1,48 @@
 ﻿$(function(){
-    $('.catmenu').click(function(){
-        $(this).toggleClass('open');
-        $('.accordeon').toggle('slow');
-    })
+
     
-    retimer();
-    setInterval(retimer, 500);
+
     
-    setInterval(function(){
-        sliderRun('toleft');
-    }, 4000);
-    $('.slider .to_left').click(function(){
-        sliderRun('toleft');
-    });
-    $('.slider .to_right').click(function(){
-        sliderRun('toright');
-    });
     
+    
+    if ($('.catalog')) {
+        $('.accordeon, .accordeon .level2, .accordeon .level3').hide();
+        $('.catmenu').click(function(){
+            $(this).toggleClass('open');
+            $('.accordeon').toggle('slow');
+        })
+        $('.accordeon .level1 > .menupoint').click(function(){
+            if ($(this).parent().find('div').length && !$(this).parent().hasClass('open')) {
+                $('.level1.open').removeClass('open').find('.level2, .level3').hide('slow');
+                $(this).parent().addClass('open').find('.level2').show('slow');
+                return false;
+            }
+        });
+        $('.accordeon .level2 > .menupoint').click(function(){
+            if ($(this).parent().find('div').length && !$(this).parent().hasClass('open')) {
+                $(this).parent().parent().find('.level2.open').removeClass('open').find('.level3').hide('slow');
+                $(this).parent().addClass('open').find('.level3').show('slow');
+                return false;
+            }
+        });
+    }
+    
+    if ($('.retaimer').length) {
+        retimer();
+        setInterval(retimer, 500);
+    }
+    
+    if ($('.slider_block').length) {
+        setInterval(function(){
+            sliderRun('toleft');
+        }, 4000);
+        $('.slider .to_left').click(function(){
+            sliderRun('toleft');
+        });
+        $('.slider .to_right').click(function(){
+            sliderRun('toright');
+        });
+    }
 })
 let slideFlag = false;
 
