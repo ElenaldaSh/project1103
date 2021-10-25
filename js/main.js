@@ -1,6 +1,7 @@
 ﻿$(function(){
     $('.catmenu').click(function(){
         $(this).toggleClass('open');
+        $('.accordeon').toggle('slow');
     })
     
     retimer();

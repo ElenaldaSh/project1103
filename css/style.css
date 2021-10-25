@@ -1,5 +1,6 @@
 ﻿html {
 	height: 100%;
+	min-width: 320px;
 }
 body {
 	margin: 0;
@@ -70,22 +71,24 @@ main {
 .headerlink:last-child:hover {
 	background-image: url('../images/basket_hover.svg');
 }
-.catmenu {
-	background: #ed7127;
-	height: 24px;
-	padding: 16px 16px 16px 56px ;
-	position: relative;
-	flex: none;
-	text-transform: uppercase;
-	font-size: 25px;
-	border-radius: 4px;
-}
 .searchline {
 	flex: 1 1 auto;
 	background: #fff;
 	padding: 16px;
 	height: 24px;
 	border-radius: 4px;
+}
+/* topmenu */
+.topmenu {
+	padding: 12px;
+}
+.topmenu a {
+	display: inline-block;
+	margin-right: 8px;
+	border-radius: 4px;
+	background: lightgrey;
+	padding: 4px 8px;
+	color: green;
 }
 /* actions */
 .actionband {
@@ -142,7 +145,6 @@ main {
 	right: 0;
 }
 /* slider */
-
 .slider .container,
 .slider_desk,
 .slider_block {
@@ -186,6 +188,57 @@ main {
 .slider .to_right {
 	right: 16px;
 }
-
-
-
+/* catalog */
+.catalog .container {
+	padding: 16px 0;
+	overflow: hidden;
+}
+.catalog aside {
+	width: 240px;
+	float: left;
+}
+.catalog aside + article {
+	margin-left: 260px;
+}
+.catalog h1 {
+	margin: 16px 0;
+}
+.catmenu {
+	background: #ed7127;
+	height: 24px;
+	padding: 16px 16px 16px 56px ;
+	position: relative;
+	text-transform: uppercase;
+	font-size: 25px;
+	border-radius: 4px;
+	color: white;
+}
+.accordeon {
+	background: #7f7;
+	margin: 16px 0 0;
+	border-radius: 4px;
+}
+.accordeon .level2 {
+	height: 0;
+	overflow: hidden;
+}
+.item-desk {
+	display: grid;
+	grid-template-columns: repeat(5, 200px);
+	grid-template-rows: auto;
+	justify-content: space-evenly;
+	row-gap: 20px;
+}
+.item {
+	width: 180px;
+	padding: 10px;
+}
+.item h3 {
+	margin-top: 0;
+}
+.item button {
+	width: 100%;
+	line-height: 2;
+	text-transform: uppercase;
+	cursor: pointer;
+}
