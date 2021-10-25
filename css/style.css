@@ -156,25 +156,16 @@ main {
 .slider_desk {
 	overflow: hidden;
 	position: relative;
+	background: #fff;
 }
 .slider_block {
 	position: absolute;
-	opacity: 0;
+	left: 0;
 	top: 0;
-	left: 200%;
-	transition: opacity 3s step-start, left 3s ease;
+	z-index: -1;
 }
 .slider_block.curr {
-	opacity: 1;
-	left: 0;
-}
-.slider_block.prev {
-	opacity: 1;
-	left: -100%;
-}
-.slider_block.next {
-	opacity: 1;
-	left: 100%;
+	z-index: 1;
 }
 .slider button {
 	position: absolute;

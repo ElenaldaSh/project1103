@@ -6,28 +6,45 @@
     retimer();
     setInterval(retimer, 500);
     
-    setInterval(slideLeft, 5000);
-    $('.slider .to_left').click(slideRight);
-    $('.slider .to_right').click(slideLeft);
+    setInterval(function(){
+        sliderRun('toleft');
+    }, 4000);
+    $('.slider .to_left').click(function(){
+        sliderRun('toleft');
+    });
+    $('.slider .to_right').click(function(){
+        sliderRun('toright');
+    });
     
 })
+let slideFlag = false;
 
 
-function slideLeft() {
-    let hlp = $('.slider_block').index($('.slider_block.next')) + 1;
-    if (hlp > $('.slider_block').length - 1) hlp -= $('.slider_block').length;
-    $('.slider_block.prev').removeClass('prev');
-    $('.slider_block.curr').removeClass('curr').addClass('prev');
-    $('.slider_block.next').removeClass('next').addClass('curr');
-    $('.slider_block').eq(hlp).addClass('next');
-}
-function slideRight() {
-    let hlp = $('.slider_block').index($('.slider_block.prev')) - 1;
-    if (hlp < 0) hlp += $('.slider_block').length;
-    $('.slider_block.next').removeClass('next');
-    $('.slider_block.curr').removeClass('curr').addClass('next');
-    $('.slider_block.prev').removeClass('prev').addClass('curr');
-    $('.slider_block').eq(hlp).addClass('prev');
+function sliderRun(direction) {
+    if (slideFlag) return;
+    slideFlag = true;
+    let hlp = $('.slider_block').index($('.slider_block.curr'));
+    let width = $('.slider_block.curr').width();
+    let next;
+    if (direction == 'toleft') {
+        next = hlp + 1;
+        if (next > $('.slider_block').length - 1) next -= $('.slider_block').length;
+        $('.slider_block').eq(next).css('left', width + 'px').addClass('curr');
+        next = '-=' + width;
+    } else if (direction == 'toright') {
+        next = hlp - 1;
+        if (next < 0) next += $('.slider_block').length;
+        $('.slider_block').eq(next).css('left', -width + 'px').addClass('curr');
+        next = '+=' + width;
+    } else {
+        console.error('invalid direction');
+        slideFlag = false;
+        return;
+    }
+    $('.slider_block.curr').animate({left: next}, 2000, function() {
+        $('.slider_block').eq(hlp).removeClass('curr').prop('style','');
+        slideFlag = false;
+    });
 }
 function retimer() {
     let limit = new Date($('.retaimer').data('fordate'));
