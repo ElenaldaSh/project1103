@@ -6,7 +6,7 @@
     
     if ($('.gallery').length) {
         galstep = $('.smallimage').width(); // померили ширину блока с мелкой картинкой
-        galgap = parseInt(getComputedStyle($('.gallery_rail')[0]).gap); // померили промежуток между картинками
+        galgap = parseInt($('.gallery_rail').css('gap')); // померили промежуток между картинками
         /* подключаем кнопки */
         $('.g_left').click(function(){
             galSlide('left'); // если двигать блок некуда, кнопка не видна - и нажать на нее не получится. если по дизайну неактивная кнопка должна быть видна, тут лучше сделать проверку класса.
@@ -66,7 +66,7 @@ let galstep, galgap; // объявляем переменные глобальн
 
 
 function galSlide(direction) {
-    hlpstr = parseInt(getComputedStyle($('.gallery_rail')[0]).left); // определили текущее положение блока
+    hlpstr = parseInt($('.gallery_rail').css('left')); // определили текущее положение блока
     if (direction == 'left') { // вычисляем новое положение с учетом направления движения
         hlpstr -= galstep;
         hlpstr -= galgap;
@@ -83,7 +83,7 @@ function galSlide(direction) {
         } else {
             $('.g_left').addClass('active');
         }
-        if (parseInt(getComputedStyle($('.gallery_rail')[0]).left) == 0) {
+        if (parseInt($('.gallery_rail').css('left')) == 0) {
             $('.g_right').removeClass('active');
         } else {
             $('.g_right').addClass('active');
