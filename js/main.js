@@ -4,8 +4,19 @@
 
     
     
+    if ($('.gallery').length) {
+        galstep = $('.smallimage').width(); // померили ширину блока с мелкой картинкой
+        galgap = parseInt(getComputedStyle($('.gallery_rail')[0]).gap); // померили промежуток между картинками
+        /* подключаем кнопки */
+        $('.g_left').click(function(){
+            galSlide('left'); // если двигать блок некуда, кнопка не видна - и нажать на нее не получится. если по дизайну неактивная кнопка должна быть видна, тут лучше сделать проверку класса.
+        });
+        $('.g_right').click(function(){
+            galSlide('right');
+        });
+    }
     
-    if ($('.catalog')) {
+    if ($('.catalog').length) {
         $('.accordeon, .accordeon .level2, .accordeon .level3').hide();
         $('.catmenu').click(function(){
             $(this).toggleClass('open');
@@ -45,8 +56,40 @@
     }
 })
 let slideFlag = false;
+let galstep, galgap; // объявляем переменные глобально, чтобы видеть их как из функции, так и вне ее
 
 
+
+
+
+
+
+
+function galSlide(direction) {
+    hlpstr = parseInt(getComputedStyle($('.gallery_rail')[0]).left); // определили текущее положение блока
+    if (direction == 'left') { // вычисляем новое положение с учетом направления движения
+        hlpstr -= galstep;
+        hlpstr -= galgap;
+    } else {
+        hlpstr += galstep;
+        hlpstr += galgap;
+    }
+    $('.gallery_rail').animate({ // плавно перемещаем блок
+        left: hlpstr
+    }, function(){ // затем проверяем, должны ли работать кнопки в новом положении
+    // такую же проверку можно поставить в $(function(){}), если у нас может быть на странице разное число картинок.
+        if ($('.gallery_window').width() - $('.gallery_rail').width() == parseInt(getComputedStyle($('.gallery_rail')[0]).left)) {
+            $('.g_left').removeClass('active');
+        } else {
+            $('.g_left').addClass('active');
+        }
+        if (parseInt(getComputedStyle($('.gallery_rail')[0]).left) == 0) {
+            $('.g_right').removeClass('active');
+        } else {
+            $('.g_right').addClass('active');
+        }
+    });
+}
 function sliderRun(direction) {
     if (slideFlag) return;
     slideFlag = true;
