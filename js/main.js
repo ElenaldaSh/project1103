@@ -66,7 +66,7 @@ let galstep, galgap; // объявляем переменные глобальн
 
 
 function galSlide(direction) {
-    hlpstr = parseInt($('.gallery_rail').css('left')); // определили текущее положение блока
+    let hlpstr = parseInt($('.gallery_rail').css('left')); // определили текущее положение блока
     if (direction == 'left') { // вычисляем новое положение с учетом направления движения
         hlpstr -= galstep;
         hlpstr -= galgap;
