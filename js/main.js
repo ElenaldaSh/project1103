@@ -14,6 +14,9 @@
         $('.g_right').click(function(){
             galSlide('right');
         });
+        $('.smallimage img').click(function(){
+            $('.bigimage img').prop('src', $(this).prop('src').split('min').join('big'));
+        });
     }
     
     if ($('.catalog').length) {
@@ -56,6 +59,7 @@
     }
 })
 let slideFlag = false;
+let gapFlag = false; // флаг нужен для блокировки новых запусков функции во время, когда она уже запущена
 let galstep, galgap; // объявляем переменные глобально, чтобы видеть их как из функции, так и вне ее
 
 
@@ -66,6 +70,8 @@ let galstep, galgap; // объявляем переменные глобальн
 
 
 function galSlide(direction) {
+    if (gapFlag) return; // если эта функция сейчас работает, не будем ей мешать
+    gapFlag = true; // поднимаем флаг блокировки - теперь новые вызовы функции не будут исполняться
     let hlpstr = parseInt($('.gallery_rail').css('left')); // определили текущее положение блока
     if (direction == 'left') { // вычисляем новое положение с учетом направления движения
         hlpstr -= galstep;
@@ -78,16 +84,17 @@ function galSlide(direction) {
         left: hlpstr
     }, function(){ // затем проверяем, должны ли работать кнопки в новом положении
     // такую же проверку можно поставить в $(function(){}), если у нас может быть на странице разное число картинок.
-        if ($('.gallery_window').width() - $('.gallery_rail').width() == parseInt(getComputedStyle($('.gallery_rail')[0]).left)) {
+        if ($('.gallery_window').width() - $('.gallery_rail').width() >= parseInt(getComputedStyle($('.gallery_rail')[0]).left)) {
             $('.g_left').removeClass('active');
         } else {
             $('.g_left').addClass('active');
         }
-        if (parseInt($('.gallery_rail').css('left')) == 0) {
+        if (parseInt($('.gallery_rail').css('left')) >= 0) {
             $('.g_right').removeClass('active');
         } else {
             $('.g_right').addClass('active');
         }
+        gapFlag = false; // опускаем флаг - наш вызов отработал, можно делать новые вызовы
     });
 }
 function sliderRun(direction) {

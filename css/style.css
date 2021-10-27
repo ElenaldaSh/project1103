@@ -322,6 +322,7 @@ main {
 .gallery img {
 	padding: 3px;
 	border: 1px solid green;
+	cursor: pointer; /* на этот элемент можно кликнуть */
 }
 .gallery span {
 	position: absolute;
