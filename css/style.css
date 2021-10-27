@@ -301,6 +301,9 @@ main {
 	border-radius: 5px;
 	text-align: center;
 }
+.bigimage img {
+	cursor: pointer;
+}
 .gallery {
 	margin: 10px 0 0;
 	padding: 0 24px;
@@ -341,4 +344,35 @@ main {
 }
 .g_right {
 	right: 5px;
+}
+/* lightbox */
+.screen {
+	position: fixed;
+	z-index: 1000;
+	background: rgba(0, 0, 0, .5);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.lightbox {
+	position: absolute;
+	top: 50px;
+	padding: 50px;
+	background: white;
+	left: 50%;
+	border-radius: 50px;
+}
+.lightbox button {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 15px;
+	right: 15px;
+	font-size: 40px;
+	line-height: 40px;
+	color: red;
+	transform: rotate(45deg);
+	border: none;
+	background: none;
 }

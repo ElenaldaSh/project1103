@@ -17,6 +17,9 @@
         $('.smallimage img').click(function(){
             $('.bigimage img').prop('src', $(this).prop('src').split('min').join('big'));
         });
+        $('.bigimage img').click(function(){
+            lightbox(this);
+        });
     }
     
     if ($('.catalog').length) {
@@ -67,8 +70,26 @@ let galstep, galgap; // объявляем переменные глобальн
 
 
 
-
-
+function lightbox(aim){
+    let src = $(aim).prop('src').split('big').join('max');
+    let w = document.documentElement.clientWidth - 200; // отступ от края и паддинг по 50 с каждой стороны
+    let h = document.documentElement.clientHeight - 200; // отступ от края и паддинг по 50 с каждой стороны
+    let sides = aim.clientWidth / aim.clientHeight; // соотношение сторон картинки
+    if (w > sides * h) { // если ширина больше, чем нужна по соотношению сторон, уменьшаем ширину
+        w = sides * h;
+    } else if (w < sides * h) { // если высота больше, чем нужна по соотношению сторон, уменьшаем высоту
+        h = w / sides;
+    }
+    // и теперь у нас максимальные возможные ширина и высота при нужном соотношении сторон
+    let leftfix = w / 2 + 50; // значение поправки для положения лайтбокса по центру экрана
+    let hlpstr = '<div class="screen"><div class="lightbox" style="margin-left:-' + leftfix + 'px;"><button type="button">+</button><img src="' + src + '" style="width:' + w + 'px;height:' + h + 'px;"></div></div>';
+    document.body.insertAdjacentHTML('beforeend', hlpstr);
+    $('.screen').click(function(e){
+        if ((e.target == document.querySelector('.screen')) || (e.target == document.querySelector('.screen button'))) {
+            $('.screen').remove();
+        }
+    });
+}
 function galSlide(direction) {
     if (gapFlag) return; // если эта функция сейчас работает, не будем ей мешать
     gapFlag = true; // поднимаем флаг блокировки - теперь новые вызовы функции не будут исполняться
